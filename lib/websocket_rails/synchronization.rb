@@ -118,7 +118,7 @@ module WebsocketRails
       when event.is_user?
         connection = WebsocketRails.users[event.user_id.to_s]
         return if connection.nil?
-        connection.trigger event
+        connection.trigger event if connection.respond_to? :trigger
       end
     end
 
